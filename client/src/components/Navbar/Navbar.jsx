@@ -11,9 +11,6 @@ import {
   HomeIcon,
   CloseIcon,
   AccountIcon,
-  RightArrow,
-  TruckIcon,
-  ChatIcon,
 } from "../Icons/Svg";
 
 import "./Navbar.css";
@@ -21,10 +18,10 @@ import "./Navbar.css";
 function Navbar() {
   const {
     navActive,
-    // cartActive,
+    cartActive,
     categoryActive,
     activeNav,
-    // activeCart,
+    activeCart,
     activeCategory,
   } = useNav();
 
@@ -36,8 +33,9 @@ function Navbar() {
         </Link>
 
         <div className="rightIcons">
-          <div>
-            <CartIcon />
+          <div onClick={activeCart}>
+            <CartIcon id='cart'/>
+            <label htmlFor="cart" className="cartCount">0</label>
           </div>
           <div onClick={activeNav}>
             <MenuIcon />
@@ -124,7 +122,77 @@ function Navbar() {
         </section>
       </nav>
 
-      <div className="cartModal"></div>
+      <div className={cartActive === false ? "cartModal" : "showCartModal"}>
+        <div className="closeCartModal" onClick={activeCart}>
+          <CloseIcon />
+        </div>
+        <ul className="cartProductList">
+          <li className="cartProduct">
+            <article>
+              <div>
+              <picture>
+                <img src="src\assets\laptop.jfif" alt="image" />
+                <label htmlFor="" className="productListCount">1</label>
+              </picture>
+
+              <div className="productDataList">
+              <h2>Light Laptop Computer PC</h2>
+              <label htmlFor="">16RAM - 128GB</label>
+              </div>
+              </div>
+              <span className="productListAmount">64,00 $</span>
+            </article>
+          </li>
+
+            <li className="cartProduct">
+            <article>
+              <div>
+              <picture>
+                <img src="src\assets\gato.png" alt="image" />
+                <label htmlFor="" className="productListCount">1</label>
+              </picture>
+
+              <div className="productDataList">
+              <h2>Juego para gatos</h2>
+              <label htmlFor="">Pelotas de agua</label>
+              </div>
+              </div>
+              <span className="productListAmount">64,00 $</span>
+            </article>
+            </li>
+
+            <li className="cartProduct">
+            <article>
+              <div>
+              <picture>
+                <img src="src\assets\vestido-dama.jfif" alt="image" />
+                <label htmlFor="" className="productListCount">1</label>
+              </picture>
+
+              <div className="productDataList">
+              <h2>Vestido Anthropologie</h2>
+              <label htmlFor="">Talla M</label>
+              </div>
+              </div>
+              <span className="productListAmount">64,00 $</span>
+            </article>
+            </li>
+        </ul>
+        <form className="productCuponForm">
+          <input type="text" />
+          <button>Usar</button>
+        </form>
+        <div className="totalCartCount">
+          <span className="sendInfotTotalCart"><h3>Subtotal</h3> <span>135,50 $</span></span>
+          <div className="infoTotalCart">
+            <h3>Envíos</h3>
+            <div className="totalcartAmount">
+            <span className="payCoin">USD</span>
+            <span className="totalCountUSD">135,50 $</span>
+              </div>            
+          </div>
+        </div>
+      </div>
 
       <div
         className={
