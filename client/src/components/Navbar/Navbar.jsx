@@ -26,7 +26,7 @@ function Navbar() {
   } = useNav();
 
   return (
-    <header className="header">
+    <header className="header" id="header">
       <div className="topNavbar">
         <Link to={"/"} className="logoContainer">
           <img className="logo" src="src\assets\logo2.png" alt="logo" />
@@ -157,7 +157,7 @@ function Navbar() {
               <label htmlFor="">Pelotas de agua</label>
               </div>
               </div>
-              <span className="productListAmount">64,00 $</span>
+              <span className="productListAmount">7,50 $</span>
             </article>
             </li>
 
@@ -184,14 +184,19 @@ function Navbar() {
         </form>
         <div className="totalCartCount">
           <span className="sendInfotTotalCart"><h3>Subtotal</h3> <span>135,50 $</span></span>
+          <div className="sendInfo">
+            <span>Envíos</span>
+            <span>Calcular en el siguiente paso</span>
+          </div>
           <div className="infoTotalCart">
-            <h3>Envíos</h3>
+            <h3>Total</h3>
             <div className="totalcartAmount">
             <span className="payCoin">USD</span>
             <span className="totalCountUSD">135,50 $</span>
-              </div>            
+              </div>
           </div>
         </div>
+              <button className="payCartButton">Pagar</button>          
       </div>
 
       <div

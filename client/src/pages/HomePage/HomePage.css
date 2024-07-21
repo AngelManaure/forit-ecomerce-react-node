@@ -1,0 +1,19 @@
+.mainHomePage {
+    height: 100vh;
+    background-color: rgb(236, 234, 234);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.homeGaleryContainer {
+    display: flex;
+    flex-direction: column;
+    background: rgb(246,210,210);
+    background: linear-gradient(0deg, rgb(236, 234, 234) 10%, rgb(245, 210, 210) 20%, rgb(196, 134, 134) 50%);
+    padding-top: 1rem;
+}
+
+.homeGaleryContainer img {
+    width: 100%;
+}
