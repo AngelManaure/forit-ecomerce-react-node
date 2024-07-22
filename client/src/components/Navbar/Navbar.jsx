@@ -70,7 +70,7 @@ function Navbar() {
               <HomeIcon />
             </Link>
           </header>
-          <Link className="navLink navLinkIcon">
+          <Link to={"/login"} className="navLink navLinkIcon" onClick={activeNav}>
             <h3>Iniciar sesión</h3>
             <picture>
               <AccountIcon />
