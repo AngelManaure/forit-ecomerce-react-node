@@ -1,0 +1,162 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  username String @unique
+  email String @unique
+  firstName String
+  lastName String
+  password String
+  age Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  orders Order[]
+  userComments Comments[] @relation("commentAuthor")
+  userProducts Products[] @relation("productAuthor")
+  userRoles UserRole[] @relation("userRoles")
+  reviews Reviews[]
+  addresses Address[] @relation("userAddress")
+}
+
+model Address {
+  id Int @id @default(autoincrement())
+  userId Int
+  user User @relation("userAddress", fields: [userId], references: [id])
+  addressLine1 String
+  addressLine2 String?
+  city String
+  state String
+  postalCode String
+  country String
+  orders Order[] @relation("OrderShippingAddress")
+}
+
+model Products {
+  id Int @id @default(autoincrement())
+  title String
+  description String
+  categoryId Int
+  category Category @relation(fields: [categoryId], references: [id])
+  price Float
+  stock Int
+  image String
+  authorId Int
+  author User @relation("productAuthor", fields: [authorId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  productComments Comments[] @relation("productComments")
+  orderItems OrderItem[]
+  reviews Reviews[]
+}
+
+model Offer {
+  id Int @id @default(autoincrement())
+  title String
+  description String
+  discountType String
+  discountValue Float
+  startDate DateTime
+  endDate DateTime
+  minOrderAmount Float?
+  applicableToCategories Category[] @relation("OfferCategories")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  offerUse OfferUsage[] @relation("offerUse")
+}
+
+model OfferUsage {
+  id Int @id @default(autoincrement())
+  offerId Int
+  offer Offer @relation("offerUse", fields: [offerId], references: [id])
+  orderId Int
+  order Order @relation(fields: [orderId], references: [id])
+  usedAt DateTime @default(now())
+}
+
+model Comments {
+  id Int @id @default(autoincrement())
+  content String
+  productId Int
+  product Products @relation("productComments", fields: [productId], references: [id])
+  authorId Int
+  author User @relation("commentAuthor", fields: [authorId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+model Reviews {
+  id Int @id @default(autoincrement())
+  content String
+  rating Int
+  productId Int
+  product Products @relation(fields: [productId], references: [id])
+  authorId Int
+  author User @relation(fields: [authorId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+model UserRole {
+  id Int @id @default(autoincrement())
+  role String
+  userId Int
+  user User @relation("userRoles", fields: [userId], references: [id])
+}
+
+model Order {
+  id Int @id @default(autoincrement())
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+  totalAmount Float
+  createdAt DateTime @default(now())
+  orderItems OrderItem[]
+  couponUsages CouponUsage[]
+  offerUsages OfferUsage[]
+  shippingAddressId Int
+  shippingAddress Address @relation("OrderShippingAddress", fields: [shippingAddressId], references: [id])
+}
+
+model OrderItem {
+  id Int @id @default(autoincrement())
+  orderId Int
+  order Order @relation(fields: [orderId], references: [id])
+  productId Int
+  product Products @relation(fields: [productId], references: [id])
+  quantity Int
+  price Float
+}
+
+model Coupon {
+  id Int @id @default(autoincrement())
+  code String @unique
+  discountType String
+  discountValue Float
+  minOrderAmount Float?
+  startDate DateTime
+  endDate DateTime
+  usageLimit Int?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  couponUsages CouponUsage[]
+}
+
+model CouponUsage {
+  id Int @id @default(autoincrement())
+  couponId Int
+  coupon Coupon @relation(fields: [couponId], references: [id])
+  orderId Int
+  order Order @relation(fields: [orderId], references: [id])
+  usedAt DateTime @default(now())
+}
+
+model Category {
+  id Int @id @default(autoincrement())
+  name String @unique
+  offers Offer[] @relation("OfferCategories")
+  products Products[]
+}

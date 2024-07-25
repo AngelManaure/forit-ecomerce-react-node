@@ -98,26 +98,26 @@ function Navbar() {
             </ul>
           </article>
 
-          <Link className="navLink">
+          <Link className="navLink" to={"/deliveries"}>
             <h4>Envíos</h4>
           </Link>
 
-          <Link className="navLink">
+          <Link className="navLink" to={"/contact"}>
             <h4>Contactar</h4>
           </Link>
 
-          <Link className="navLink">
+          <Link className="navLink" to={"/categories"}>
             <h4>Categorías</h4>
           </Link>
 
-          <Link className="navLink">
+          <Link className="navLink" to={"/cart"}>
             <h4>Carrito</h4>
           </Link>
 
           <article className="navLinkUser">
-            <Link>Mis compras</Link>
-            <Link>Ayuda</Link>
-            <Link>Políticas y condiciones de uso</Link>
+            <Link to={"/my-shops"}>Mis compras</Link>
+            <Link to={"/help"}>Ayuda</Link>
+            <Link to={"/terms"}>Políticas y condiciones de uso</Link>
           </article>
         </section>
       </nav>
@@ -136,7 +136,7 @@ function Navbar() {
               </picture>
 
               <div className="productDataList">
-              <h2>Light Laptop Computer PC</h2>
+              <Link to={""}>Light Laptop Computer PC</Link>
               <label htmlFor="">16RAM - 128GB</label>
               </div>
               </div>
@@ -153,7 +153,7 @@ function Navbar() {
               </picture>
 
               <div className="productDataList">
-              <h2>Juego para gatos</h2>
+              <Link>Juego para gatos</Link>
               <label htmlFor="">Pelotas de agua</label>
               </div>
               </div>
@@ -170,7 +170,7 @@ function Navbar() {
               </picture>
 
               <div className="productDataList">
-              <h2>Vestido Anthropologie</h2>
+              <Link>Vestido Anthropologie</Link>
               <label htmlFor="">Talla M</label>
               </div>
               </div>
@@ -206,19 +206,19 @@ function Navbar() {
       >
         <ul className="categoryModalList">
           <li>
-            <Link className="categoryModalLink">PC</Link>
+            <Link to={"/categories/pc"} className="categoryModalLink">PC</Link>
           </li>
           <li>
-            <Link className="categoryModalLink">Repuestos</Link>
+            <Link to={"/categories/repuestos"} className="categoryModalLink">Repuestos</Link>
           </li>
           <li>
-            <Link className="categoryModalLink">Ropa</Link>
+            <Link to={"/categories/ropa"} className="categoryModalLink">Ropa</Link>
           </li>
           <li>
-            <Link className="categoryModalLink">Muebles</Link>
+            <Link to={"/categories/mueblres"} className="categoryModalLink">Muebles</Link>
           </li>
           <li>
-            <Link className="categoryModalLink">Ver más</Link>
+            <Link to={"/categories"} className="categoryModalLink">Ver más</Link>
           </li>
         </ul>
       </div>

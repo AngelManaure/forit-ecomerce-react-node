@@ -13,21 +13,21 @@ function Footer() {
         </div>
         <div className="footerLinks">
             <article className="footerArticle">
-                <Link>Mis compras</Link>
-                <Link>Soporte</Link>
-                <Link>Envíos</Link>
-                <Link>Condiciones de uso</Link>
+                <Link to={"/my-shops"}>Mis compras</Link>
+                <Link to={"/help"}>Soporte</Link>
+                <Link to={"deliveries"}>Envíos</Link>
+                <Link to={"/terms"}>Condiciones de uso</Link>
             </article>
 
             <article className="footerArticle">
-                <Link>Mi cuenta</Link>
-                <Link>Reportar</Link>
-                <Link>Políticas</Link>
-                <Link>Contactar</Link>
+                <Link to={"/account"}>Mi cuenta</Link>
+                <Link to={"/report"}>Reportar</Link>
+                <Link to={"/terms"}>Políticas</Link>
+                <Link to={"/contact"}>Contactar</Link>
             </article>
         </div>
         <div className="footerAbout">
-            <Link>Iniciar sesión</Link>
+            <Link to={"/login"}>Iniciar sesión</Link>
             <div className="copyRight">
             <small>©Copyright - For It inc.</small>
             </div>
