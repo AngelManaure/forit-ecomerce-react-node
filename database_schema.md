@@ -32,12 +32,17 @@ Descripción: Representa una dirección asociada a un usuario.
 
 id (Int): Identificador único de la dirección.
 userId (Int): Identificador del usuario asociado a la dirección.
-addressLine1 (String): Línea principal de la dirección.
-addressLine2 (String?): Línea secundaria de la dirección (opcional).
-city (String): Ciudad de la dirección.
-state (String): Estado o provincia de la dirección.
-postalCode (String): Código postal de la dirección.
-country (String): País de la dirección.
+addressLine1 (String): Línea principal de la dirección. (puede incluir número de casa, calle, etc.)
+
+addressLine2 (String?): Línea secundaria de la dirección (opcional). (puede incluir detalles adicionales como apartamento, suite, etc.)
+
+city (String): Ciudad de la dirección. (La ciudad donde se encuentra la dirección.)
+
+state (String): Estado o provincia de la dirección. (El estado o provincia donde se encuentra la dirección.)
+
+postalCode (String): Código postal de la dirección. (El código postal asociado a la dirección.)
+
+country (String): País de la dirección. (El país donde se encuentra la dirección.)
 
 *Relaciones*:
 
