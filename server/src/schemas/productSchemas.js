@@ -18,9 +18,8 @@ export const productSchema = z.object({
   categoryId: z
     .number({
       required_error: "Categoría requerida",
-    })
-    .int({
-      message: "Debes seleccionar una categoría para añadir el producto",
+    }).int({
+      message: "Debe ser un entero",
     }),
   price: z
     .number({
@@ -41,12 +40,5 @@ export const productSchema = z.object({
     })
     .min(0, {
       message: "La cantidad no puede ser negativa",
-    }),
-  image: z
-    .string({
-      required_error: "URL de la imagen requerida",
-    })
-    .url({
-      message: "La URL de la imagen debe ser válida",
     }),
 });
