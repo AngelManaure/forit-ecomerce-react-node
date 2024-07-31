@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 
 import prisma from "../db.js";
 import { createAccessToken } from "../libs/accessToken.js";
-import { JWT_SECRET } from "../config.js";
+import { JWT_SECRET, USER_ROLE } from "../config.js";
 
 const auth = {};
 
@@ -49,6 +49,22 @@ auth.register = async (req, res) => {
             "Ocurrió un error al intentar registrar, por favor intenta de nuevo",
         });
     } else {
+      const roleAssigned = await prisma.userRole.create({
+        data: {
+          role: USER_ROLE,
+          userId: userCreated.id,
+        },
+      });
+  
+      if (!roleAssigned) {
+        return res
+          .status(500)
+          .json({
+            message:
+              "Ocurrió un error al intentar asignar el rol, por favor intenta de nuevo",
+          });
+      }
+
       const token = await createAccessToken({ id: userCreated.id });
       res.cookie("token", token);
       res.status(200).json({

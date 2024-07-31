@@ -10,6 +10,7 @@ import { FRONT_URL } from "./config.js";
 import authRoutes from "./routes/authRoutes.js";
 import addressRoutes from "./routes/addressRoutes.js";
 import productsRoutes from "./routes/productsRoutes.js"
+import offersRoutes from "./routes/offersRoutes.js"
 
 // Rutas privadas(ADMIN)
 import adminProductsRoutes from "./routes/adminRoutes/adminProductsRoutes.js"
@@ -37,6 +38,7 @@ app.use(morgan("dev"));
 app.use("/api", authRoutes);
 app.use("/api", addressRoutes);
 app.use("/api", productsRoutes);
+app.use("/api", offersRoutes);
 
 // Uso rutas privadas(admin)
 app.use("/api/admin", adminProductsRoutes);

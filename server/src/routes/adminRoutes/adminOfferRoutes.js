@@ -1,17 +1,19 @@
 import { Router } from "express";
 
 import offer from "../../controllers/adminControllers/adminOfferControllers.js";
+import { authRequired } from "../../middlewares/authMiddlewares.js";
+import { adminRequired } from "../../middlewares/adminMiddlewares/adminAuth.js";
 
 const router = Router();
 
-router.get("/offers", offer.getAll);
+router.get("/offers", authRequired, adminRequired, offer.getAll);
 
-router.get("/offers/:id", offer.getOne);
+router.get("/offers/:id", authRequired, adminRequired, offer.getOne);
 
-router.post("/create-offert", offer.create);
+router.post("/create-offert", authRequired, adminRequired, offer.create);
 
-router.put("/offers/:id", offer.update);
+router.put("/offers/:id", authRequired, adminRequired, offer.update);
 
-router.delete("/offers/:id", offer.delete);
+router.delete("/offers/:id", authRequired, adminRequired, offer.delete);
 
 export default router;
